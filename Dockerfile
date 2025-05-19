@@ -54,19 +54,23 @@ RUN echo "RUN Layer 4: Starting - Install Deno" \
     && curl -fsSL https://deno.land/x/install/install.sh | DENO_INSTALL=/usr/local sh \
     && echo "RUN Layer 4: Finished - Install Deno"
 
-# Layer 5: Install Ruby, Git, and build tools for gems
-RUN echo "RUN Layer 5: Starting - Install Ruby, Git, and build tools" \
+# Layer 5: Install Ruby, Git, and build tools for gems (including Nokogiri dependencies)
+RUN echo "RUN Layer 5: Starting - Install Ruby, Git, and build/Nokogiri tools" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         ruby-full \
         git \
         g++ \
         cmake \
+        make \
         pkg-config \
         libssl-dev \
+        libxml2-dev \
+        libxslt1-dev \
+        zlib1g-dev \
         xz-utils \
     && rm -rf /var/lib/apt/lists/* \
-    && echo "RUN Layer 5: Finished - Install Ruby, Git, and build tools"
+    && echo "RUN Layer 5: Finished - Install Ruby, Git, and build/Nokogiri tools"
 
 # Layer 6: Install 'licensed' gem
 RUN echo "RUN Layer 6: Starting - Install 'licensed' gem" \
