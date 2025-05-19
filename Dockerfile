@@ -1,5 +1,5 @@
 # Base image
-FROM node:20-bookworm-slim
+FROM node:20-bookworm-slim@sha256:83e53269616ca1b22cf7533e5db4e2f1a0c24a8e818b21691d6d4a69ec9e2c6d
 
 # Copy repository
 COPY . /metrics
